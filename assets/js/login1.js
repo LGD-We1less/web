@@ -47,7 +47,7 @@ $(function () {
         e.preventDefault()
 
         $.ajax({
-            url: 'http://ajax.frontend.itheima.net/api/login',
+            url: '/api/login',
             method: 'POST',
             data: $(this).serialize(),
             success: function (res) {
@@ -56,7 +56,7 @@ $(function () {
                 }
                 layer.msg('登录成功  正在进入')
 
-                location.href = "http://www.baidu.com";
+                location.href = "/index.html";
 
             }
         })
