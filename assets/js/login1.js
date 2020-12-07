@@ -33,7 +33,7 @@ $(function () {
             username: $('#form_reg [name = username]').val(),
             password: $('#form_reg [name = password]').val()
         }
-        $.post('http://ajax.frontend.itheima.net/api/reguser', data, function (res) {
+        $.post('/api/reguser', data, function (res) {
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
@@ -55,7 +55,7 @@ $(function () {
                     return layer.msg('用户名或密码错误 请重新输入')
                 }
                 layer.msg('登录成功  正在进入')
-
+                localStorage.setItem('token', res.token)
                 location.href = "/index.html";
 
             }
