@@ -20,7 +20,7 @@
                 <!-- 图片裁剪区域 -->
                 <div class="cropper-box">
                     <!-- 这个 img 标签很重要，将来会把它初始化为裁剪区域 -->
-                    <img id="image" src="/assets/images/sample.jpg" />
+                    <img id="image" src="" />
                 </div>
                 <!-- 图片的预览区域 -->
                 <div class="preview-box">
@@ -37,12 +37,13 @@
                 </div>
             </div <!-- 第二行的按钮区域 -->
             <div class="row2">
-                <input type="file" id="file" accept="image/png,image/jpeg" / style="display: none;">
+                <input type="file" id="file" accept="image/png,image/jpeg" style="display: none;" />
                 <button type="button" class="layui-btn scBtn">上传</button>
                 <button type="button" class="layui-btn layui-btn-danger okbtn">确定</button>
             </div>
         </div>
     </div>
+    
     <script src="/assets/lib/jquery.js"></script>
     <script src="/assets/lib/layui/layui.all.js"></script>
     <script src="/assets/lib/cropper/Cropper.js"></script>

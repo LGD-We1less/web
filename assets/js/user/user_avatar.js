@@ -1,6 +1,24 @@
 $(function () {
     var layer = layui.layer
 
+    look()
+    function look() {
+        $.ajax({
+            method: 'GET',
+            url: '/my/userinfo',
+            success: function (res) {
+                console.log(res.data.user_pic);
+                $('#image')[0].setAttribute('src', res.data.user_pic)
+
+                $image
+                    .cropper('destroy') // 销毁旧的裁剪区域
+                    .attr('src', res.data.user_pic) // 重新设置图片路径
+                    .cropper(options) // 重新初始化裁剪区域
+            }
+        })
+
+    }
+
     // 1.1 获取裁剪区域的 DOM 元素
     var $image = $('#image')
 
@@ -30,20 +48,27 @@ $(function () {
         var fileList = e.target.files
 
         if (fileList.length === 0) {
-            return layer.msg('请选择一张照片上传')
+            return layer.msg('请选择照片！')
         }
+
         // 3.2拿到用户上传的文件
-        var file = e.target.files[0]
+        var file = fileList[0]
 
         // 3.3将选择的文件转换成路径
         var imgURL = URL.createObjectURL(file)
 
+        console.log(imgURL);
         // 3.4 重新初始化裁剪区域/先销毁旧的裁剪区域/重新设置图片路径/重新初始化裁剪区域
-        $image.cropper('destroy').attr('src', imgURL).cropper(options)
+        $image
+            .cropper('destroy') // 销毁旧的裁剪区域
+            .attr('src', imgURL) // 重新设置图片路径
+            .cropper(options) // 重新初始化裁剪区域
 
 
     })
 
+
+    // 4.为确定按钮绑定点击事件
     $('.okbtn').on('click', function () {
         var dataURL = $image
             .cropper('getCroppedCanvas', {
@@ -52,7 +77,7 @@ $(function () {
                 height: 100
             })
             .toDataURL('image/png')
-
+        console.log(dataURL);
         $.ajax({
             method: 'POST',
             url: '/my/update/avatar',
